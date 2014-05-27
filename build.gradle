@@ -30,6 +30,7 @@ dependencies {
 
     testCompile 'junit:junit:4.11'
     testCompile 'org.assertj:assertj-core:1.5.0'
+    testCompile 'com.github.tomakehurst:wiremock:1.46'
 }
 
 modifyPom {

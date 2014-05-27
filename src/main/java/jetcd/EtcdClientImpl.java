@@ -58,7 +58,7 @@ final class EtcdClientImpl implements EtcdClient {
 
   @Override
   public void set(final String key, final String value, final int ttl)
-      throws EtcdException {
+      throws EtcdException { 
     Preconditions.checkArgument(!Strings.isNullOrEmpty(key));
     Preconditions.checkArgument(!Strings.isNullOrEmpty(value));
     Preconditions.checkArgument(ttl > 0);
@@ -96,6 +96,9 @@ final class EtcdClientImpl implements EtcdClient {
   private static final class EtcdErrorHandler implements ErrorHandler {
     @Override
     public Throwable handleError(final RetrofitError cause) {
+	  if(cause.getResponse() == null) {
+		return cause;
+	  }
       return (EtcdException) cause.getBodyAs(EtcdException.class);
     }
   }
